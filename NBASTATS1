@@ -1,0 +1,10 @@
+CREATE TABLE NBASTATS
+(First_Name varchar (50),
+Last_Name varchar (50),
+Position varchar (50),
+Team varchar (50),
+Rebounds int,
+Points int,
+Assists int,
+Made_Threes int
+)
