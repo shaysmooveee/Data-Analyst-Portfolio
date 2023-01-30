@@ -1,3 +1,28 @@
+Below is the data that i instered into two tables that i created using SQL
+--INSERT INTO EmployeeDemographics VALUES
+--(1002, 'Pam', 'Beasley', 30, 'Female'),
+--(1003, 'Dwight', 'Schrute', 29, 'Male'),
+--(1004, 'Angela', 'Martin', 31, 'Female'),
+--(1005, 'Toby', 'Flenderson', 32, 'Male'),
+--(1006, 'Michael', 'Scott', 35, 'Male'),
+--(1007, 'Meridith', 'Paalmer', 32, 'Female'),
+--(1008, 'Stanley', 'Hudson', 38, 'Male'),
+--(1009, 'Kevin', 'Malone', 31, 'Male')
+
+
+----INSERT INTO EmployeeSalary VALUES
+----(1002, 'Receptionist', 36000),
+----(1003, 'Salesman', 63000),
+----(1004, 'Accountant', 47000),
+----(1005, 'HR', 50000),
+----(1006, 'Regional Manager',65000),
+----(1007, 'Supplier Relations', 41000),
+----(1008, 'Salesman', 48000),
+----(1009, 'Accountant', 42000)
+
+
+This is a query i wrote to find an anverage salary of employees who were accountants from two tables i created called EmployeeDemographics and EmployeeSalary.
+
 SELECT Job_Title, AVG(Salary)
 FROM SQLPractice.DBO.EmployeeDemographics
 INNER JOIN SQLTutorial.dbo.EmployeeSalary
@@ -5,4 +30,41 @@ ON EmployeeDemographics.Employee_ID = EmployeeSalary.Employee_ID
 WHERE Job_Title = 'Salesman'
 GROUP BY Job_Title
 
-This is a query i wrote to find an anverage salary of employees who were accountants from two tables i created called EmployeeDemographics and EmployeeSalary.
+Below are a few queries i wrote to utitlize different SQL functions like CASE, UNION, JOINS, AND ORDER BY to sort the data created in the two tables
+EmployeeDemographics and EmployeeSalary
+--SELECT *
+--FROM SQLPractice.dbo.EmployeeDemographics
+
+--SELECT *
+--FROM SQLPractice.dbo.EmployeeSalary
+
+--SELECT Employee_ID, First_Name, Age
+--FROM SQLPractice.DBO.EmployeeDemographics
+--UNION
+--SELECT Employee_ID, Job_Title , Salary
+--FROM SQLPractice.dbo.EmployeeSalary
+--ORDER BY Employee_ID
+
+
+--SELECT First_Name, Last_Name, Age,
+--CASE
+--WHEN Age = 38 THEN 'Stanley'
+--WHEN Age > 30 THEN  'Old'
+--ELSE 'Baby'
+--END
+--FROM SQLPractice.dbo.EmployeeDemographics
+--WHERE Age is Not NULL
+--ORDER BY Age
+
+
+
+SELECT First_Name, Last_Name, Job_Title, Salary,
+CASE
+WHEN Job_Title = 'Salesman' THEN Salary + (Salary * .10)
+WHEN Job_Title = 'Accountant' THEN Salary + (Salary *.05)
+WHEN Job_Title= 'HR' THEN Salary + (Salary *.025)
+ELSE Salary + (Salary * .03)
+END AS Salary_After_Raise
+FROM SQLPractice.dbo.EmployeeDemographics
+JOIN SQLPractice.dbo.EmployeeSalary
+ON EmployeeDemographics.Employee_ID = EmployeeSalary.Employee_ID
