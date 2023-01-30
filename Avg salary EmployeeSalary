@@ -1,0 +1,8 @@
+SELECT Job_Title, AVG(Salary)
+FROM SQLTutorial.DBO.EmployeeDemographics
+INNER JOIN SQLTutorial.dbo.EmployeeSalary
+ON EmployeeDemographics.Employee_ID = EmployeeSalary.Employee_ID
+WHERE Job_Title = 'Salesman'
+GROUP BY Job_Title
+
+This is a query i wrote to find an anverage salary of employees who were accountants from two tables i created called EmployeeDemographics and EmployeeSalary.
