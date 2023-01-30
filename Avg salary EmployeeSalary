@@ -1,5 +1,5 @@
 SELECT Job_Title, AVG(Salary)
-FROM SQLTutorial.DBO.EmployeeDemographics
+FROM SQLPractice.DBO.EmployeeDemographics
 INNER JOIN SQLTutorial.dbo.EmployeeSalary
 ON EmployeeDemographics.Employee_ID = EmployeeSalary.Employee_ID
 WHERE Job_Title = 'Salesman'
